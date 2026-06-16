@@ -1,0 +1,88 @@
+
+==================================================
+AVALIAÇÃO DE PROMPTS OTIMIZADOS
+==================================================
+
+Provider: google
+Modelo Principal: gemini-2.5-flash
+Modelo de Avaliação: gemini-2.5-flash
+
+Criando dataset de avaliação: FullCycle-eval...
+   ✓ Carregados 15 exemplos do arquivo datasets/bug_to_user_story.jsonl
+   ✓ Dataset 'FullCycle-eval' já existe, usando existente
+
+======================================================================
+PROMPTS PARA AVALIAR
+======================================================================
+
+Este script irá puxar prompts do LangSmith Hub.
+Certifique-se de ter feito push dos prompts antes de avaliar:
+  python src/push_prompts.py
+
+
+🔍 Avaliando: samuca/bug_to_user_story_v2
+   Puxando prompt do LangSmith Hub: samuca/bug_to_user_story_v2
+   ✓ Prompt carregado com sucesso
+   Dataset: 15 exemplos
+/usr/local/lib/python3.11/site-packages/langchain_google_genai/chat_models.py:47: FutureWarning: 
+
+All support for the `google.generativeai` package has ended. It will no longer be receiving 
+updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+See README for more details:
+
+https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+
+  from google.generativeai.caching import CachedContent  # type: ignore[import]
+   Avaliando exemplos...
+      [1/15] F1:0.66 Clarity:0.90 Precision:0.97
+      [2/15] F1:0.76 Clarity:0.91 Precision:0.97
+      [3/15] F1:0.67 Clarity:0.90 Precision:0.95
+      [4/15] F1:0.62 Clarity:0.95 Precision:1.00
+      [5/15] F1:0.63 Clarity:0.95 Precision:0.90
+      [6/15] F1:0.96 Clarity:0.85 Precision:0.87
+      [7/15] F1:0.64 Clarity:0.88 Precision:0.97
+      [8/15] F1:0.89 Clarity:0.88 Precision:0.90
+      [9/15] F1:0.95 Clarity:0.98 Precision:0.98
+      [10/15] F1:0.82 Clarity:0.98 Precision:0.97
+      [11/15] F1:0.89 Clarity:0.90 Precision:1.00
+      [12/15] F1:1.00 Clarity:0.98 Precision:0.98
+      [13/15] F1:1.00 Clarity:1.00 Precision:1.00
+      [14/15] F1:0.91 Clarity:0.97 Precision:0.97
+      [15/15] F1:1.00 Clarity:1.00 Precision:1.00
+
+==================================================
+Prompt: samuca/bug_to_user_story_v2
+==================================================
+
+Métricas Derivadas:
+  - Helpfulness: 0.95 ✓
+  - Correctness: 0.89 ✗
+
+Métricas Base:
+  - F1-Score: 0.83 ✗
+  - Clarity: 0.94 ✓
+  - Precision: 0.96 ✓
+
+--------------------------------------------------
+📊 MÉDIA GERAL: 0.9132
+--------------------------------------------------
+
+❌ STATUS: REPROVADO
+⚠️  Métricas abaixo de 0.9: correctness, f1_score
+⚠️  Média atual: 0.9132 | Necessário: 0.9000
+
+==================================================
+RESUMO FINAL
+==================================================
+
+Prompts avaliados: 1
+Aprovados: 0
+Reprovados: 1
+
+⚠️  Alguns prompts não atingiram todas as métricas >= 0.9
+
+Próximos passos:
+1. Refatore os prompts com score baixo
+2. Faça push novamente: python src/push_prompts.py
+3. Execute: python src/evaluate.py novamente
+make: *** [Makefile:31: evaluate] Erro 1

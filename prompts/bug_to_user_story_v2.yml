@@ -34,14 +34,12 @@ bug_to_user_story_v2:
     - Use tom profissional, empático e centrado no usuário (linguagem positiva: foque no
       que o usuário QUER fazer, não apenas no que está quebrado).
     - NÃO invente dados que não estão no relato (evite alucinação). Use apenas o que o bug informa.
-    - Ajuste a QUANTIDADE e a profundidade dos critérios à complexidade do bug (ver seção
-      ADAPTAÇÃO). Em bugs simples, seja CONCISO: 4 a 6 critérios, um único cenário,
-      espelhando a brevidade e o estilo direto dos exemplos. NÃO invente cenários extras que
-      o bug não pede (ex: não adicione "girar de volta para retrato", navegação ou casos não
-      mencionados) — isso dilui a resposta e reduz a clareza.
-    - Cubra o COMPORTAMENTO CORRETO esperado (resultado principal, correção dos dados,
-      confirmação ao usuário e, quando o bug indicar, validação / tempo real / edge case),
-      mas sem redundância.
+    - Cubra o COMPORTAMENTO CORRETO esperado de forma COMPLETA: pré-condição, ação,
+      resultado principal, correção/precisão dos dados e, quando o bug indicar,
+      validação/filtragem, atualização em tempo real/persistência, confirmação ao usuário e
+      edge case. Use de 5 a 7 critérios em bugs médios/complexos e de 4 a 6 em bugs simples.
+      Não adicione cenários INVERSOS ou extras que o bug não menciona (ex: "girar de volta
+      para retrato", navegação), pois divergem da referência.
     - Escolha a PERSONA mais convencional e direta para o contexto: dashboard ou painel
       administrativo -> "administrador"; funcionalidade de app/loja -> "usuário" ou "cliente";
       regra de backend/sistema -> "o sistema". Evite personas genéricas ou rebuscadas
@@ -104,6 +102,34 @@ bug_to_user_story_v2:
     - Severidade: ALTA
     - Tipo: Quebra de controle de acesso (OWASP A01:2021)
     - Ação: Implementar middleware de autorização
+
+    ## Exemplo 3 — Bug simples (UI/layout)
+    Relato de Bug:
+    No iOS, ao girar o celular para landscape, o layout da tela de perfil fica quebrado.
+
+    User Story:
+    Como um usuário de iOS, eu quero visualizar minha tela de perfil em modo paisagem, para que eu possa usar o app em qualquer orientação sem problemas visuais.
+
+    Critérios de Aceitação:
+    - Dado que estou na tela de perfil no iOS
+    - Quando giro o dispositivo para modo paisagem
+    - Então o layout deve se adaptar corretamente
+    - E todos os elementos devem permanecer visíveis e alinhados
+    - E não deve haver sobreposição de componentes
+
+    ## Exemplo 4 — Bug simples (dashboard/contagem)
+    Relato de Bug:
+    Dashboard mostra contagem errada de usuários ativos. Mostra 50 mas só há 42 na lista.
+
+    User Story:
+    Como um administrador visualizando o dashboard, eu quero ver a contagem correta de usuários ativos, para que eu possa tomar decisões baseadas em dados precisos.
+
+    Critérios de Aceitação:
+    - Dado que acesso o dashboard como admin
+    - Quando visualizo a métrica de usuários ativos
+    - Então o número exibido deve corresponder ao total real de usuários ativos
+    - E o valor deve ser atualizado em tempo real
+    - E deve incluir apenas usuários com status ativo
 
     # AGORA É SUA VEZ
     Converta o relato de bug fornecido pelo usuário em uma User Story seguindo todas as regras acima.

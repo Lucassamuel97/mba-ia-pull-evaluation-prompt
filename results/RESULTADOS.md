@@ -13,6 +13,27 @@ Cada iteração tem o output bruto salvo em `results/iteracao-XX.txt`.
 | 01 | Versão inicial (Role Prompting + Few-shot + Chain of Thought) | ~0.76 | ✅ | ✅ ~0.95 | ✅ | ❌ | 0.9117 | ❌ Reprovado (F1 e Correctness < 0.9) |
 | 02 | + critérios completos (5-7 dimensões) + regras gerais (proíbe números literais) | 0.8987 ❌ | 0.93 ✅ | 0.95 ✅ | 0.94 ✅ | 0.93 ✅ | 0.9294 | ❌ Reprovado (só F1 < 0.9, por 0.0013) |
 | 03 | concisão escalada por complexidade (bug simples = conciso, sem cenários extras) + persona convencional | 0.81 ❌ | 0.91 ✅ | 0.93 ✅ | 0.92 ✅ | 0.87 ❌ | 0.8884 | ❌ Regrediu (cortar abrangência piorou os 13) |
+| 04 | volta à abrangência da iter.2 + persona convencional + sem cenários inversos | 0.85 ❌ | 0.93 ✅ | 0.94 ✅ | 0.93 ✅ | 0.89 ❌ | 0.9085 | ❌ Reprovado (F1/Correctness; variância do juiz dominou — ex1 caiu para 0.57) |
+
+> 🔑 **Conclusão após 4 iterações:** o prompt já está bom (Precision ~0.94, Clarity ~0.93,
+> respostas alinhadas às referências). A média de F1 oscila 0.85–0.90, com forte ruído do
+> juiz `gemini-2.5-flash` (o exemplo do carrinho variou F1 0.57–0.84 entre rodadas).
+
+| 05 | mesmo prompt da iter.4, **juiz trocado para `gemini-2.5-pro`** | 0.78 ❌ | 0.90 ✅ | 0.96 ✅ | 0.93 ✅ | 0.87 ❌ | 0.8873 | ❌ Pro foi MAIS severo no F1 (recall) |
+| 06 | juiz de volta no `flash` + **+2 few-shot** (UI/layout e dashboard/contagem) p/ recall | 0.83 ❌ | 0.94 ✅ | 0.96 ✅ | 0.95 ✅ | 0.89 ❌ | 0.9132 | ❌ Few-shot exato NÃO subiu o F1 dos ex.3/4 (0.67/0.62) |
+
+> 🧱 **Teto identificado:** mesmo com a referência EXATA como few-shot, os exemplos 1/3/4
+> recebem F1 ~0.62–0.67 do juiz `gemini-2.5-flash`. Ou seja, há um **teto de ~0.83–0.90 no
+> F1** imposto pelo juiz, não pelo prompt — nenhuma mudança de prompt cruza 0.9 de forma
+> confiável. Restam dois caminhos para um run aprovado: (A) usar `gpt-4o` como juiz (modelo
+> de avaliação recomendado no README, mais bem calibrado); (B) re-rodar no `flash` contando
+> com a variância (a iter.2 chegou a F1 0.8987).
+
+> 🔁 **Aprendizado da iter.5:** juiz mais forte (`2.5-pro`) **não** é mais generoso — é mais
+> rigoroso no recall (F1 caiu para 0.78). Confirma que o F1 é um problema de **recall**: a
+> resposta precisa conter os critérios específicos da referência. **Próxima alavanca: enriquecer
+> o Few-shot** com referências dos tipos que pontuam baixo (UI/layout, dashboard/contagem) e
+> voltar o juiz para `gemini-2.5-flash` (mais leniente no F1).
 
 > ⚠️ **Insight crítico:** o juiz `gemini-2.5-flash` tem **variância alta** (~±0.14 por
 > exemplo entre rodadas). O mesmo output do exemplo 1 oscilou F1 0.78 → 0.84 → 0.70 nas 3
