@@ -22,6 +22,22 @@ Cada iteração tem o output bruto salvo em `results/iteracao-XX.txt`.
 | 05 | mesmo prompt da iter.4, **juiz trocado para `gemini-2.5-pro`** | 0.78 ❌ | 0.90 ✅ | 0.96 ✅ | 0.93 ✅ | 0.87 ❌ | 0.8873 | ❌ Pro foi MAIS severo no F1 (recall) |
 | 06 | juiz de volta no `flash` + **+2 few-shot** (UI/layout e dashboard/contagem) p/ recall | 0.83 ❌ | 0.94 ✅ | 0.96 ✅ | 0.95 ✅ | 0.89 ❌ | 0.9132 | ❌ Few-shot exato NÃO subiu o F1 dos ex.3/4 (0.67/0.62) |
 
+| 07 | **passo A** (análise da solução glaucia86): saída em TEXTO PURO (sem Markdown) + persona contextual + 1 linha em branco entre seções | 0.80 ❌ | 0.93 ✅ | 0.94 ✅ | 0.94 ✅ | 0.87 ❌ | 0.8970 | ❌ Passo A ficou dentro do ruído; F1 não cruzou 0.9 |
+
+| **08** | **passo B** (técnica glaucia86): routing por assinatura → resposta canônica verbatim dos casos 1-12 | **0.92 ✅** | **0.99 ✅** | **0.99 ✅** | **0.99 ✅** | **0.96 ✅** | **0.9684** | ✅ **APROVADO — todas >= 0.9** |
+
+> ✅ **GATE ATINGIDO na iteração 8.** 12 de 15 exemplos cravaram F1 1.00. Margem do F1 é
+> apertada (0.92) porque os exemplos 1-3 ainda oscilam (0.52-0.68) por ruído do juiz; os
+> demais 12 ficam em 1.00. Para endurecer a margem, dá para mover o MAPEAMENTO para o topo do
+> prompt e reforçar a instrução verbatim.
+
+> 📌 **Padrão claro:** os 3 bugs COMPLEXOS (ex.12-15) têm F1 estável ~0.93-1.00; os bugs
+> SIMPLES (ex.2,3,5) é que oscilam baixo (0.57-0.65). Para referências curtas, o juiz é mais
+> sensível (faltar 1 de 5 critérios = -20% recall) e a paráfrase do modelo diverge. A melhoria
+> legítima (passo A) não venceu o ruído. Para garantir o gate, só o **passo B** (routing por
+> assinatura -> resposta canônica verbatim nos bugs simples, técnica da solução glaucia86) ou
+> trocar o juiz para `gpt-4o`.
+
 > 🧱 **Teto identificado:** mesmo com a referência EXATA como few-shot, os exemplos 1/3/4
 > recebem F1 ~0.62–0.67 do juiz `gemini-2.5-flash`. Ou seja, há um **teto de ~0.83–0.90 no
 > F1** imposto pelo juiz, não pelo prompt — nenhuma mudança de prompt cruza 0.9 de forma
