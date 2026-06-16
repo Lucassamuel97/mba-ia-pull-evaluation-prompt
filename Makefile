@@ -1,4 +1,4 @@
-.PHONY: help up down build pull push evaluate test shell logs
+.PHONY: help up down build pull push evaluate experiment test shell logs
 
 help:
 	@echo "Targets:"
@@ -7,7 +7,8 @@ help:
 	@echo "  make build     - Rebuild da imagem"
 	@echo "  make pull      - Faz pull do prompt v1 do LangSmith Hub"
 	@echo "  make push      - Faz push do prompt v2 otimizado (publico)"
-	@echo "  make evaluate  - Roda a avaliacao das 5 metricas"
+	@echo "  make evaluate  - Roda a avaliacao das 5 metricas (terminal)"
+	@echo "  make experiment- Publica um Experiment formal no LangSmith (dashboard)"
 	@echo "  make test      - Roda os testes pytest"
 	@echo "  make shell     - Abre um shell bash no container"
 	@echo "  make logs      - Mostra os logs do container"
@@ -29,6 +30,9 @@ push:
 
 evaluate:
 	@docker compose exec -T app python src/evaluate.py
+
+experiment:
+	@docker compose exec -T app python src/run_experiment.py
 
 test:
 	@docker compose exec -T app pytest tests/test_prompts.py -v
