@@ -1,0 +1,55 @@
+
+==================================================
+AVALIAÇÃO DE PROMPTS OTIMIZADOS
+==================================================
+
+Provider: google
+Modelo Principal: gemini-2.5-flash
+Modelo de Avaliação: gemini-2.5-flash
+
+Criando dataset de avaliação: FullCycle-eval...
+
+======================================================================
+PROMPTS PARA AVALIAR
+======================================================================
+
+Este script irá puxar prompts do LangSmith Hub.
+Certifique-se de ter feito push dos prompts antes de avaliar:
+
+
+🔍 Avaliando: samuca/bug_to_user_story_v2
+
+
+
+
+==================================================
+Prompt: samuca/bug_to_user_story_v2
+==================================================
+
+Métricas Derivadas:
+
+Métricas Base:
+
+--------------------------------------------------
+📊 MÉDIA GERAL: 0.9117
+--------------------------------------------------
+
+❌ STATUS: REPROVADO
+⚠️  Métricas abaixo de 0.9: correctness, f1_score
+⚠️  Média atual: 0.9117 | Necessário: 0.9000
+
+==================================================
+RESUMO FINAL
+==================================================
+
+Prompts avaliados: 1
+Aprovados: 0
+Reprovados: 1
+
+⚠️  Alguns prompts não atingiram todas as métricas >= 0.9
+
+Próximos passos:
+1. Refatore os prompts com score baixo
+2. Faça push novamente: python src/push_prompts.py
+3. Execute: python src/evaluate.py novamente
+make: *** [Makefile:31: evaluate] Erro 1

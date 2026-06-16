@@ -34,6 +34,23 @@ bug_to_user_story_v2:
     - Use tom profissional, empático e centrado no usuário (linguagem positiva: foque no
       que o usuário QUER fazer, não apenas no que está quebrado).
     - NÃO invente dados que não estão no relato (evite alucinação). Use apenas o que o bug informa.
+    - Ajuste a QUANTIDADE e a profundidade dos critérios à complexidade do bug (ver seção
+      ADAPTAÇÃO). Em bugs simples, seja CONCISO: 4 a 6 critérios, um único cenário,
+      espelhando a brevidade e o estilo direto dos exemplos. NÃO invente cenários extras que
+      o bug não pede (ex: não adicione "girar de volta para retrato", navegação ou casos não
+      mencionados) — isso dilui a resposta e reduz a clareza.
+    - Cubra o COMPORTAMENTO CORRETO esperado (resultado principal, correção dos dados,
+      confirmação ao usuário e, quando o bug indicar, validação / tempo real / edge case),
+      mas sem redundância.
+    - Escolha a PERSONA mais convencional e direta para o contexto: dashboard ou painel
+      administrativo -> "administrador"; funcionalidade de app/loja -> "usuário" ou "cliente";
+      regra de backend/sistema -> "o sistema". Evite personas genéricas ou rebuscadas
+      (ex: não use "gerente de produto" para um bug de dashboard administrativo).
+    - Escreva critérios comportamentais GERAIS e reutilizáveis. NÃO repita números, IDs ou
+      valores específicos do relato dentro dos critérios (ex: evite "mostrar 42 e não 50");
+      descreva a regra geral (ex: "a contagem deve refletir o total real de usuários ativos").
+    - Sua resposta deve conter APENAS a User Story final em Markdown — sem preâmbulo, sem
+      explicar seu raciocínio e sem comentários meta.
 
     # ADAPTAÇÃO À COMPLEXIDADE
     - Bug SIMPLES: User Story + 4 a 6 critérios de aceitação.
