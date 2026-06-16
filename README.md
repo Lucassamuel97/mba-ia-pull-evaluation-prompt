@@ -73,6 +73,7 @@ prompt engineering. As 3 primeiras estão declaradas em `techniques_applied` no 
 - Prompt público v2: https://smith.langchain.com/prompts/bug_to_user_story_v2
 - Dashboard do projeto de avaliação: `FullCycle` (LangSmith)
 - Experiment formal: `bug_to_user_story_v2-9ecc0913`
+- 🔗 **Resultados públicos no LangSmith (dataset + experiment, 5 métricas):** https://smith.langchain.com/public/4df2e31e-f766-4a4b-8d8b-16f009c3aa05/d
 
 Médias das 5 métricas no Experiment — **todas ≥ 0.9** (clarity 0.99, correctness 0.95, f1_score 0.92, helpfulness 0.99, precision 0.98):
 
@@ -105,8 +106,12 @@ make push
 # 5. Validar a estrutura do prompt (6 testes)
 make test
 
-# 6. Avaliar as 5 métricas (objetivo: todas >= 0.9)
+# 6. Avaliar as 5 métricas (objetivo: todas >= 0.9) — saída no terminal
 make evaluate
+
+# 7. (Opcional) Publicar um Experiment formal no LangSmith (preenche a aba
+#    "Experiments" com a tabela das 5 métricas por exemplo — bom p/ evidência)
+make experiment
 ```
 
 | Comando | O que faz |
@@ -115,7 +120,8 @@ make evaluate
 | `make pull` | Pull do `leonanluppi/bug_to_user_story_v1` |
 | `make push` | Push público do `samuca/bug_to_user_story_v2` |
 | `make test` | Roda os 6 testes pytest de validação |
-| `make evaluate` | Avalia o v2 contra os 15 bugs e calcula as 5 métricas |
+| `make evaluate` | Avalia o v2 contra os 15 bugs e calcula as 5 métricas (terminal) |
+| `make experiment` | Publica um Experiment formal no LangSmith (dashboard) |
 | `make shell` | Abre um shell bash no container |
 
 > ⚠️ **Importante:** ao alterar o `.env`, recrie o container (`docker compose up -d --force-recreate app`)
