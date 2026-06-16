@@ -72,7 +72,15 @@ prompt engineering. As 3 primeiras estão declaradas em `techniques_applied` no 
 
 - Prompt público v2: https://smith.langchain.com/prompts/bug_to_user_story_v2
 - Dashboard do projeto de avaliação: `FullCycle` (LangSmith)
-- _Screenshots das avaliações ≥ 0.9: ver pasta `screenshots/`._
+- Experiment formal: `bug_to_user_story_v2-9ecc0913`
+
+Médias das 5 métricas no Experiment — **todas ≥ 0.9** (clarity 0.99, correctness 0.95, f1_score 0.92, helpfulness 0.99, precision 0.98):
+
+![Médias das métricas no LangSmith (APROVADO)](screenshots/experiment-medias-aprovado.png)
+
+Notas detalhadas por exemplo (os 15 bugs do dataset):
+
+![Notas por exemplo no LangSmith](screenshots/experiment-notas-por-exemplo.png)
 
 ## C) Como Executar
 

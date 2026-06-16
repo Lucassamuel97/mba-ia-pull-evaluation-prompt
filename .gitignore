@@ -45,5 +45,4 @@ ENV/
 *.log
 
 # Project specific
-screenshots/
 .claude/
